@@ -9,7 +9,25 @@ ciphertext = 1189861507920362377926780101267825516126222014780665329827661354598
 
 Тут специально была сделана ошибка, мы заменили ^ на \*, что существенно уменьшает возможные варианты шифротекста. Но дешифруется еще легче, путем целочисленного деления.
 
+```Python
+from Crypto.Util.number import *
+
+p = getPrime(256)
+q = getPrime(256)
+n = p * q
+e = 0x64563
+
+my_flag = "kctf{s7uP1d_m1St4k3_1SnT_17?}"
+
+flag = bytes_to_long(my_flag.encode('utf-8'))
+print("n =", n)
+print("e =", e)
+ciphertext = (flag * e) % n
+print("ciphertext =", ciphertext)
+
 ```
+
+```Python
 from Crypto.Util.number import *
 
 
