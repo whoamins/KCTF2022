@@ -1,0 +1,33 @@
+# Regex Master?
+
+Нужно найти хэш, который начинается на 76, заканчивается на d или b и сумма цифр в нем равна 97.
+
+```Python
+import re
+
+with open('input_data.txt', 'r') as file:
+    matches = list()
+    
+    for line in file:
+        line = line.rstrip()
+        result = 0
+        if line.startswith('76') and (line.endswith('d') or line.endswith('b')):
+            for char in line:
+                try:
+                    result += int(char)
+                except ValueError:
+                    continue
+            
+            if result == 97:
+                matches.append(line)
+    
+print(matches)
+
+# Ну или регексом ^76[A-Za-z0-9].*[bd]$
+```
+
+
+Флаг:
+```
+kctf{7635f20e0549f2d029bd9184c82b2a9d}
+```
